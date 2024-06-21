@@ -1,3 +1,5 @@
+import { Link, NavLink } from 'react-router-dom';
+
 import Logo from '../assets/images/logo.png';
 
 export default function Navbar() {
@@ -7,32 +9,32 @@ export default function Navbar() {
         <div className="flex h-20 items-center justify-between">
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
-            <a className="flex flex-shrink-0 items-center mr-4" href="/">
+            <Link className="flex flex-shrink-0 items-center mr-4" to="/">
               <img className="h-10 w-auto" src={Logo} alt="React Jobs" />
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
                 React Jobs
               </span>
-            </a>
+            </Link>
             <div className="md:ml-auto">
               <div className="flex space-x-2">
-                <a
-                  href="/"
+                <NavLink
+                  to="/"
                   className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
                 >
                   Home
-                </a>
-                <a
-                  href="/jobs"
+                </NavLink>
+                <NavLink
+                  to="/jobs"
                   className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
                 >
                   Jobs
-                </a>
-                <a
-                  href="/add-job"
+                </NavLink>
+                <NavLink
+                  to="/add-job"
                   className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
                 >
                   Add Job
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>

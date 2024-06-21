@@ -1,6 +1,6 @@
 import JobList from './JobList';
 
-import Jobs from '../jobs.json';
+import Jobs from '../assets/data/Jobs.json';
 
 export default function BrowseJobsSection() {
   const recentJobs = Jobs.slice(0, 3);

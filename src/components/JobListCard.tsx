@@ -21,6 +21,7 @@ interface JobListProps {
 
 import { useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function JobListCard({ Job, index }: JobListProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -56,12 +57,12 @@ export default function JobListCard({ Job, index }: JobListProps) {
             <FaMapMarkerAlt className="inline text-lg mb-1 mr-1" />
             {Job.location}
           </div>
-          <a
-            href={`/jobs/${Job.id}`}
+          <Link
+            to={`/jobs/${Job.id}`}
             className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
-          </a>
+          </Link>
         </div>
       </div>
     </div>
