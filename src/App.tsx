@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout';
+import AddJobPage from './pages/AddJobPage';
 import HomePage from './pages/HomePage';
 import JobPage from './pages/JobPage';
 import JobsPage from './pages/JobsPage';
@@ -16,6 +17,7 @@ export default function App() {
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
+        <Route path="/add-job" element={<AddJobPage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobPage />} />
         <Route path="*" element={<NotFoundPage />} />
