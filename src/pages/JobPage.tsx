@@ -19,6 +19,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import Loader from '../components/Loader';
 
@@ -28,6 +30,7 @@ export default function JobPage() {
   const [error, setError] = useState<string | null>(null);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -47,6 +50,23 @@ export default function JobPage() {
 
     fetchJob();
   }, [id]);
+
+  const deleteJobHandler = async () => {
+    if (window.confirm('Are you sure you want to delete this job?')) {
+      try {
+        await axios.delete(`/api/Jobs/${id}`);
+        navigate('/jobs');
+        toast.success('Job deleted successfully');
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+          toast.error('An error occurred');
+        } else {
+          setError('An unknown error occurred');
+        }
+      }
+    }
+  };
 
   return (
     <section className="bg-indigo-50 px-4 py-5">
@@ -120,7 +140,10 @@ export default function JobPage() {
                 >
                   Edit Job
                 </Link>
-                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
+                <button
+                  onClick={deleteJobHandler}
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                >
                   Delete Job
                 </button>
               </div>

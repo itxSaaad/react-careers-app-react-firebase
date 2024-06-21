@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function AddJobPage() {
   const [title, setTitle] = useState('');
@@ -32,9 +33,11 @@ export default function AddJobPage() {
     try {
       const response = await axios.post('/api/Jobs', newJob);
       console.log(response.data);
+      toast.success('Job added successfully');
       navigate('/jobs');
     } catch (error) {
       console.error(error);
+      toast.error('An error occurred');
     }
   };
 
