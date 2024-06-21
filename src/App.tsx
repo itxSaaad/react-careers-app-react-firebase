@@ -7,6 +7,7 @@ import {
 
 import MainLayout from './layouts/MainLayout';
 import AddJobPage from './pages/AddJobPage';
+import EditJobPage from './pages/EditJobPage';
 import HomePage from './pages/HomePage';
 import JobPage from './pages/JobPage';
 import JobsPage from './pages/JobsPage';
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/add-job" element={<AddJobPage />} />
+        <Route path="/edit-job/:id" element={<EditJobPage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobPage />} />
         <Route path="*" element={<NotFoundPage />} />

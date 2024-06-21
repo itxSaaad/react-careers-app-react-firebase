@@ -53,8 +53,8 @@ export default function RecentJobsSection() {
         </div>
       ) : error ? (
         <div className="container-xl lg:container m-auto">
-          <h1 className="text-3xl font-bold text-red-500 text-center">
-            An error occurred: <span className="text-red-700">{error}</span>
+          <h1 className="text-xl font-bold text-indigo-500 text-center">
+            An error occurred: {error}
           </h1>
         </div>
       ) : (
