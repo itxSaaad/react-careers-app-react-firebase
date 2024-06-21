@@ -1,17 +1,20 @@
-import BrowseJobsSection from './components/BrowseJobsSection';
-import Footer from './components/Footer';
-import HeroSection from './components/HeroSection';
-import HomeCard from './components/HomeCard';
-import Navbar from './components/Navbar';
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+
+import HomePage from './pages/HomePage';
+import MainLayout from './layouts/MainLayout';
 
 export default function App() {
-  return (
-    <>
-      <Navbar />
-      <HeroSection />
-      <HomeCard />
-      <BrowseJobsSection />
-      <Footer />
-    </>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+      </Route>
+    )
   );
+  return <RouterProvider router={router} />;
 }
