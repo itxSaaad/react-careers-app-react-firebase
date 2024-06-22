@@ -4,6 +4,7 @@ interface Company {
   contactEmail: string;
   contactPhone: string;
 }
+
 interface Job {
   id: string;
   title: string;

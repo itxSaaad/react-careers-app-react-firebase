@@ -1,39 +1,63 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-export default function AddJobPage() {
+export default function EditJobPage() {
   const [title, setTitle] = useState('');
   const [type, setType] = useState('');
   const [description, setDescription] = useState('');
   const [salary, setSalary] = useState('Under $50K');
   const [location, setLocation] = useState('');
-  const [company, setCompany] = useState('');
+  const [companyName, setCompanyName] = useState('');
   const [companyDescription, setCompanyDescription] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
 
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchJob = async () => {
+      try {
+        const response = await axios.get(`/api/Jobs/${id}`);
+        const job = response.data;
+        setTitle(job.title);
+        setType(job.type);
+        setDescription(job.description);
+        setSalary(job.salary);
+        setLocation(job.location);
+        setCompanyName(job.company.name);
+        setCompanyDescription(job.company.description);
+        setContactEmail(job.company.contactEmail);
+        setContactPhone(job.company.contactPhone);
+      } catch (error) {
+        console.error(error);
+        toast.error('An error occurred');
+      }
+    };
+    fetchJob();
+  }, [id]);
 
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newJob = {
+    const updatedJob = {
       title,
       type,
       description,
       salary,
       location,
-      company,
-      companyDescription,
-      contactEmail,
-      contactPhone,
+      company: {
+        name: companyName,
+        description: companyDescription,
+        contactEmail,
+        contactPhone,
+      },
     };
 
     try {
-      const response = await axios.post('/api/Jobs', newJob);
-      console.log(response.data);
-      toast.success('Job added successfully');
+      await axios.put(`/api/Jobs/${id}`, updatedJob);
+      toast.success('Job updated successfully');
       navigate('/jobs');
     } catch (error) {
       console.error(error);
@@ -46,7 +70,9 @@ export default function AddJobPage() {
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={submitHandler}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6">
+              Edit Job
+            </h2>
 
             <div className="mb-4">
               <label
@@ -163,8 +189,8 @@ export default function AddJobPage() {
                 name="company"
                 className="border rounded w-full py-2 px-3"
                 placeholder="Company Name"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
               />
             </div>
 
@@ -227,7 +253,7 @@ export default function AddJobPage() {
                 className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Add Job
+                Update Job
               </button>
             </div>
           </form>

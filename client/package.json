@@ -1,5 +1,5 @@
 {
-  "name": "react-careers-jobs-listing-app-react",
+  "name": "react-careers-app-react-mock-rest-api",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "serve": "json-server --watch src/assets/data/Jobs.json --port 5000"
+    "serve": "json-server --watch assets/data/Jobs.json --port 5000"
   },
   "dependencies": {
     "axios": "^1.7.2",
@@ -21,12 +21,14 @@
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {
+    "@types/node": "^20.14.8",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
