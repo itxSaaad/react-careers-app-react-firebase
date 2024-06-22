@@ -2,7 +2,7 @@ import { onValue, push, ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import database from '../firebaseConfig';
+import { database } from '../firebaseConfig';
 
 export default function AddJobPage() {
   const [title, setTitle] = useState('');

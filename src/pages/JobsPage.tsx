@@ -1,6 +1,6 @@
 import { onValue, ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
-import database from '../firebaseConfig';
+import { database } from '../firebaseConfig';
 
 import JobList from '../components/JobList';
 import Loader from '../components/Loader';

@@ -19,7 +19,7 @@ import { onValue, ref, remove } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import database from '../firebaseConfig';
+import { database } from '../firebaseConfig';
 
 import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
