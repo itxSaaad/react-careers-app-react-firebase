@@ -15,16 +15,17 @@ interface Job {
 }
 
 interface JobListProps {
-  Jobs: Job[];
+  Jobs: Record<string, Job>;
 }
 
 import JobListCard from './JobListCard';
 
 export default function JobList({ Jobs }: JobListProps) {
+  // console.log(Jobs);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {Jobs.map((job, index) => (
-        <JobListCard key={job.id} Job={job} index={index} />
+      {Object.entries(Jobs).map(([id, Job]) => (
+        <JobListCard key={id} Job={Job} id={id} />
       ))}
     </div>
   );

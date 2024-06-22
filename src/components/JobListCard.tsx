@@ -16,14 +16,14 @@ interface Job {
 
 interface JobListProps {
   Job: Job;
-  index: number;
+  id: string;
 }
 
 import { useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-export default function JobListCard({ Job, index }: JobListProps) {
+export default function JobListCard({ Job, id }: JobListProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   let description = Job.description;
@@ -33,7 +33,7 @@ export default function JobListCard({ Job, index }: JobListProps) {
   }
 
   return (
-    <div key={index} className="bg-white rounded-xl shadow-md relative">
+    <div key={id} className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">
         <div className="mb-6">
           <div className="text-gray-600 my-2">{Job.type}</div>
@@ -58,7 +58,7 @@ export default function JobListCard({ Job, index }: JobListProps) {
             {Job.location}
           </div>
           <Link
-            to={`/jobs/${Job.id}`}
+            to={`/jobs/${id}`}
             className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
