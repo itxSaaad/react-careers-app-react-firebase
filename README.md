@@ -1,5 +1,14 @@
 # React Careers App - React + Firebase
 
+## Architecture
+
+```mermaid
+flowchart LR
+  User -->|browse and manage career listings| UI[React careers interface\nVercel deployment]
+  UI -->|read and write listing data| Firebase[Firebase Realtime Database]
+  Firebase --> UI
+```
+
 > A simple careers app built with React.js and Firebase. The app allows users to view job listings, add new job listings, edit and delete job listings. The app uses Firebase Realtime Database to store job listings.
 
 <br />
@@ -129,3 +138,7 @@ Give ⭐️ if you like this project!
 [issues-url]: https://github.com/itxSaaad/react-careers-app-react-firebase/issues
 [license-shield]: https://img.shields.io/github/license/itxSaaad/react-careers-app-react-firebase.svg?style=for-the-badge
 [license-url]: https://github.com/itxSaaad/react-careers-app-react-firebase/blob/main/LICENSE.md
+
+## Vercel Deployment
+Vite SPA served from the repository root; client-side routes rewrite to index.html.
+See the repository-root [vercel.json](./vercel.json) for build roots and routing. Configure private values in Vercel Project Settings; never commit secrets.
